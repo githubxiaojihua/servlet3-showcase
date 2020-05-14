@@ -1,0 +1,25 @@
+servlet3的使用，使用注解定义servlet\filter\listener
+删掉web.xml也能正常运行
+
+关于filer中的dispatcherTypes的说明：
+https://www.logicbig.com/tutorials/java-ee-tutorial/java-servlet/dispatcher-type.html
+
+The dispatcher type of a request is used by the container to select the filters that
+need to be applied to the request: Only filters with matching dispatcher type and url
+patterns will be applied。
+请求的dispatcher类型被容器用来选择需要应用到请求的过滤器:只有具有匹配dispatcher类型和url模式的过滤器
+才会被应用。
+The initial dispatcher type of a request is defined as DispatcherType.REQUEST.
+The dispatcher type of a request dispatched via RequestDispatcher.forward(ServletRequest,
+ServletResponse) or RequestDispatcher.include(ServletRequest, ServletResponse)
+is given as DispatcherType.FORWARD or DispatcherType.INCLUDE, respectively, while
+the dispatcher type of an asynchronous request dispatched via one of the AsyncContext.
+dispatch() methods is given as DispatcherType.ASYNC. Finally, the dispatcher type of
+a request dispatched to an error page by the container's error handling mechanism is
+given as DispatcherType.ERROR.
+一个请求的初始类型为DispatcherType.REQUEST。通过RequestDispatcher.forward(ServletRequest,ServletResponse)。
+或RequestDispatcher.include(ServletRequest, ServletResponse)转发的请求了类型分别为DispatcherType.FORWARD or DispatcherType.INCLUDE。
+如果是通过AsyncContext.dispatch()所转发的异步请求则类型为DispatcherType.ASYNC。最后，通过容器错误机制而转发到
+错误处理页面的请求，对应的类型为DispatcherType.ERROR。
+
+上面网页中的内容测试了ERROR类型的filter。除非发生ERROR类的转发，否则不触发对应的filter

@@ -25,7 +25,7 @@ public class DynamicInitListener implements ServletContextListener {
     public void contextInitialized(final ServletContextEvent sce) {
         ServletContext sc = sce.getServletContext();
 
-        sc.addListener("com.sishuok.chapter2.web.listener.DynamicServletContextListener");
+        //sc.addListener("com.sishuok.chapter2.web.listener.DynamicServletContextListener");
 
         sc.addFilter("dynamicFilter", DynamicFilter.class);
 

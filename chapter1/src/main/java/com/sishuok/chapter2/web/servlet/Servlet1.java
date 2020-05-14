@@ -13,10 +13,12 @@ import java.io.IOException;
  * <p>Date: 13-6-21 下午2:27
  * <p>Version: 1.0
  */
-@WebServlet(name = "servlet1", urlPatterns = {"/s1", "/s1/*"}, loadOnStartup = 1,
-        initParams = {
+@WebServlet(name = "servlet1",
+            urlPatterns = {"/s1", "/s1/*"},
+            loadOnStartup = 1,
+            initParams = {
                 @WebInitParam(name = "msg", value="hello world")
-        })
+            })
 public class Servlet1 extends HttpServlet {
     private String msg;
 
