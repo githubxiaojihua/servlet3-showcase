@@ -23,19 +23,25 @@ import javax.servlet.ServletRegistration;
  */
 public class NoXmlWebAppInitializer implements WebApplicationInitializer {
 
+    /**
+     * 将spring配置，springmvc配置放到了两个配置类里面进行加载
+     * 然后还在dispatcherservlet
+     * @param sc
+     * @throws ServletException
+     */
     @Override
     public void onStartup(final ServletContext sc) throws ServletException {
 
-        //1、根上下文
+        //1、注册根上下文
         AnnotationConfigWebApplicationContext  rootContext = new AnnotationConfigWebApplicationContext();
         rootContext.register(RootConfiguration.class);
         sc.addListener(new ContextLoaderListener(rootContext));
 
-        //2、springmvc上下文
+        //2、注册springmvc上下文
         AnnotationConfigWebApplicationContext springMvcContext = new AnnotationConfigWebApplicationContext();
         springMvcContext.register(SpringMvcConfiguration.class);
 
-        //3、DispatcherServlet
+        //3、注册DispatcherServlet
         DispatcherServlet dispatcherServlet = new DispatcherServlet(springMvcContext);
 
         ServletRegistration.Dynamic dynamic = sc.addServlet("dispatcherServlet", dispatcherServlet);
