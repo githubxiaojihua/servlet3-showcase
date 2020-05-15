@@ -5,3 +5,6 @@ SpringMVC注解配置实现无XML化的SpringMVC配置，内部使用了ServletC
 根据spring官方api解释所有实现这个接口的类将会被SpringServletContainerInitializer探知并发现，此类就是
 实现了ServletContainerInitializer接口，并使用了@HandlesTypes({WebApplicationInitializer.class})
 来规定探知WebApplicationInitializer接口及其实现类，并调用其onStartup方法。可以看其源码
+
+javadoc：
+https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/WebApplicationInitializer.html
