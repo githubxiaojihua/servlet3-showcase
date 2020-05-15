@@ -1,0 +1,24 @@
+一、动态注册或者编程式注册servlet,filter,listener。本工程中的各个类
+通过使用ServletContex动态注册或者叫编程式注册Servlet,Filter,Listener，但是只能在容器启动的时候注册，
+比如在ServletContextListener监听中使用。
+本例中通过DynamicInitListener类来实现
+
+二、web模块化
+可以将一个项目分成N个模块，然后通过扫描模块下的META-INF/web-fragment.xml进行装配。
+本例中chapter2是一个war，依赖了chapter2-fragment1(jar),chapter2-fragment2(jar)
+其中chapter2-fragment1中在web-fragment.xml中使用传统方式定义servlet。
+而chapter2-fragment2中在web-fragment.xml中使用传统方式定义servlet和filter，但是
+同时使用@WebServlet来定义新的servlet，同样可用。
+每个模块中的web-fragment.xml不能去掉否则将加载不了对应的模块
+
+三、容器启动可热插拔
+依赖的chapter2-initializer以及chapter2-initialzer-haha两个jar文件作为热插拔的例子。
+需要实现ServletContainerInitializer接口，可以理解为在servlet容器启动的
+时候进行编程注册（不仅包括动态注册servlet还可以干其他的工作）。可以在容器启动时自动回调其onStartup方法，插入一些功能。
+注意是jar文件，并且在META-INF.services中增加
+javax.servlet.ServletContainerInitializer(接口的全限定名称)，并在里面声明实现类的全路径
+
+chapter2-initialzer-haha配合使用@HandlesTypes(value = HahaServlet.class)注解，标识了
+在容器启动的时候需要容器扫描的类，容器会将扫描到的类注入到onStartup(final Set<Class<?>> classSet, final ServletContext sc) 方法的
+classSet参数中。本例中的HahaServlet是一个抽象类，有两个实现类，因此会将这两个实现类和抽象类扫描进来
+在onStartup方法中进行了判断如果不是抽象类就将其动态注册成servlet
