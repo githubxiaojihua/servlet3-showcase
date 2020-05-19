@@ -5,7 +5,7 @@
     <title></title>
 </head>
 <body>
-      <form action="/chapter3/params" method="post">
+      <form action="/params" method="post">
           <input type="text" name="name">
           <input type="submit" value="submit">
       </form>

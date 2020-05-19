@@ -1,0 +1,19 @@
+servlet3中对于异步处理的支持。
+学习顺序：
+AsyncServlet1
+AsyncServlet2
+以上两个直接请求
+AsyncServlet3，配合async3.jsp:
+    通过异步实现服务器推送技术中的Comet，关于服务器推送技术和Comet的说明参考文章
+    https://juejin.im/entry/5795d1c76be3ff006618a6a4
+    在本地笔记中也有
+    AsyncServlet3实现的是基于iframe和htmlfile的方式实现的Comet
+AsyncServlet4，配合async4.jsp：基于Ajax长轮询（long-polling)方式实现的Comet
+以上两个直接请求对应的jsp
+ParamServlet以及SyncServlet1分别用于演示未开启异步时候的servlet
+
+ListenerServlet1
+ListenerServlet2，分派以及最终都会执行onComplete来完成异步
+ListenerServlet3，没看明白
+
+剩下的就是聊天室的实现，需要具体看看，使用的是ajax长轮询（需要了解一下这些技术）
