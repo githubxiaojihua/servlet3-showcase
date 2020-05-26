@@ -25,6 +25,7 @@ public class NoXmlWebAppInitializer implements WebApplicationInitializer {
 
     /**
      * 将spring配置，springmvc配置放到了两个配置类里面进行加载
+     * 分别加载spring根容器和springmvc容器
      * 然后还在dispatcherservlet
      * @param sc
      * @throws ServletException
